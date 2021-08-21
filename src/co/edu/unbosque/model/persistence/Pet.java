@@ -7,14 +7,14 @@ public class Pet implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private String id;
-	private Long microchip;
+	private long microchip;
 	private String species;
 	private String sex;
 	private String size;
 	private boolean potentDangerous;
 	private String neighborhood;
 	
-	public Pet(String id, Long microchip, String species, String sex, String size, boolean potentDangerous, String neighborhood) {
+	public Pet(String id, long microchip, String species, String sex, String size, boolean potentDangerous, String neighborhood) {
 		this.id = id;
 		this.microchip = microchip;
 		this.species = species;
@@ -32,11 +32,11 @@ public class Pet implements Serializable{
 		this.id = id;
 	}
 
-	public Long getMicrochip() {
+	public long getMicrochip() {
 		return microchip;
 	}
 
-	public void setMicrochip(Long microchip) {
+	public void setMicrochip(long microchip) {
 		this.microchip = microchip;
 	}
 
@@ -79,5 +79,7 @@ public class Pet implements Serializable{
 	public void setNeighborhood(String neighborhood) {
 		this.neighborhood = neighborhood;
 	}
-	
+	public String toString() {
+		return "id: "+this.id+" || Microchip: "+this.microchip+" || Species: "+this.species+" || Size: "+this.size+" || PotentDangerous: "+this.potentDangerous+" || neighborhood: "+this.neighborhood;
+	}
 }

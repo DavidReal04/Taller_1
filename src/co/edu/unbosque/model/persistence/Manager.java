@@ -122,4 +122,36 @@ public class Manager {
 		}
 		return pet;
 	}
+
+	public String countBySpecies() {
+		int canino=0;
+		int felino=0;
+		for (int i = 0; i < petList.size(); i++) {
+			if(petList.get(i).getSpecies().equals("CANINO")) {
+				canino++;
+			} else if(petList.get(i).getSpecies().equals("FELINO")) {
+				felino++;
+			}
+		}
+		return "Canino: "+canino+"\nFelino: "+felino;
+	}
+	
+	public String countBySpecies(String species) {
+		int canino=0;
+		int felino=0;
+		for (int i = 0; i < petList.size(); i++) {
+			if(petList.get(i).getSpecies().equals("CANINO")) {
+				canino++;
+			} else if(petList.get(i).getSpecies().equals("FELINO")) {
+				felino++;
+			}
+		}
+		if(species.equals("CANINO")) {
+			return "Canino: "+canino;
+		} else if (species.equals("FELINO")) {
+			return "Felino: "+felino;
+		} else {
+			return "Ingrese una especie válida";
+		} 
+	}
 }

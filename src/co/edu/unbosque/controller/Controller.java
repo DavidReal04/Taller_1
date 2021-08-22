@@ -16,5 +16,6 @@ public class Controller {
 		System.out.println(model.getManager().uploadData());
 		System.out.println(model.getManager().assignID());
 		System.out.println(model.getManager().findByMicrochip(Long.parseLong("966000101057611")));
+		System.out.println(model.getManager().countBySpecies());
 	}
 }

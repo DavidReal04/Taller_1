@@ -15,5 +15,6 @@ public class Controller {
 	public void funcionar() {
 		System.out.println(model.getManager().uploadData());
 		System.out.println(model.getManager().assignID());
+		System.out.println(model.getManager().findByMicrochip(Long.parseLong("966000101057611")));
 	}
 }

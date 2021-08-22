@@ -11,10 +11,14 @@ import javax.swing.JFileChooser;
 
 public class Manager {
 
-	private Pet pet = new Pet(null, 0, null, null, null, false, null);
+	private Pet pet;
 	private ArrayList<Pet> petList = new ArrayList<>();
 	private JFileChooser file = new JFileChooser();
-
+	
+	public Manager() {
+		pet = new Pet(null, 0, null, null, null, false, null);
+	}
+	
 	public String uploadData() {
 		String linea="";
 		String cadena="";
@@ -98,5 +102,24 @@ public class Manager {
 			}
 		}
 		return "Se ha repetido el ID en "+exceptions+" ocasiones" + "\nEl proceso de asignación de ids ha finalizado";
+	}
+
+	public Pet findByMicrochip(long microchip) {
+		boolean flag = false;
+		try {
+			for (int i = 0; i < petList.size(); i++) {
+				if(petList.get(i).getMicrochip()==microchip) {
+					pet=petList.get(i);
+					i=petList.size();
+					flag=true;
+				}
+			}
+			if(!flag) {
+				throw new InvalidMicrochipException();
+			}
+		} catch (InvalidMicrochipException e) {
+			return null;
+		}
+		return pet;
 	}
 }

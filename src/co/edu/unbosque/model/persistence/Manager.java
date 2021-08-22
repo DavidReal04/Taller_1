@@ -8,15 +8,14 @@ import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
 
+
 public class Manager {
 
-	private Pet pet;
-	private ArrayList<Pet> petList;
+	private Pet pet = new Pet(null, 0, null, null, null, false, null);
+	private ArrayList<Pet> petList = new ArrayList<>();
 	private JFileChooser file = new JFileChooser();
 
 	public Manager() {
-		pet = new Pet(null, 0, null, null, null, false, null);
-		petList = new ArrayList<>();
 	}
 	
 	public String readFile() {
@@ -28,7 +27,8 @@ public class Manager {
 			FileReader fr = new FileReader(f);
 			BufferedReader br = new BufferedReader(fr);
 			linea=br.readLine();
-			int contador=0;
+			int exitosos=0;
+			int fallidos=0;
 			while (linea!=null) {
 				try {
 				String[] partes = linea.split(";");
@@ -36,15 +36,19 @@ public class Manager {
 				pet.setSpecies(partes[1]);
 				pet.setSex(partes[2]);
 				pet.setSize(partes[3]);
-				pet.setPotentDangerous(Boolean.parseBoolean(partes[4].replace("NO", "False").replace("SI", "True")));
+				pet.setPotentDangerous(Boolean.parseBoolean(partes[4].replace("SI", "True")));
 				pet.setNeighborhood(partes[5]);
 				petList.add(pet = new Pet(null, pet.getMicrochip(), pet.getSpecies(), pet.getSex(), pet.getSize(), pet.isPotentDangerous(), pet.getNeighborhood()));
-				System.out.println(petList.get(contador)+"\n");
-				contador++;
-				} catch (NumberFormatException e) {}
-				cadena =  petList+"";
+				System.out.println(petList.get(exitosos)+"\n");
+				exitosos++;
+				} catch (NumberFormatException e) {
+					fallidos++;
+				} catch (ArrayIndexOutOfBoundsException e) {
+					fallidos++;
+				}
 				linea=br.readLine();
 			}
+			cadena = "Registros Existosos: "+ exitosos +" || Registros Fallidos: " + fallidos;
 			fr.close();
 		} catch (IOException e) {
 			return null;

@@ -15,7 +15,7 @@ public class Manager {
 	private ArrayList<Pet> petList = new ArrayList<>();
 	private JFileChooser file = new JFileChooser();
 
-	public String readFile() {
+	public String uploadData() {
 		String linea="";
 		String cadena="";
 		file.showOpenDialog(file);
@@ -38,7 +38,7 @@ public class Manager {
 				pet.setSize(partes[3]);
 				pet.setPotentDangerous(Boolean.parseBoolean(partes[4].replace("SI", "True")));
 				pet.setNeighborhood(partes[5]);
-				petList.add(pet = new Pet(null, pet.getMicrochip(), pet.getSpecies(), pet.getSex(), pet.getSize(), pet.isPotentDangerous(), pet.getNeighborhood()));
+				petList.add(pet = new Pet("NO ASIGNADO", pet.getMicrochip(), pet.getSpecies(), pet.getSex(), pet.getSize(), pet.isPotentDangerous(), pet.getNeighborhood()));
 				exitosos++;
 				} catch (NumberFormatException e) {
 					fallidos++;
@@ -54,7 +54,7 @@ public class Manager {
 		} catch (IOException e) {
 			return null;
 		}
-		return cadena;
+		return cadena + "\nEl proceso de carga del archivo ha finalizado";
 	}
 	
 	public String assignID() {
@@ -97,6 +97,6 @@ public class Manager {
 				}
 			}
 		}
-		return "Se ha repetido el ID en "+exceptions+" ocasiones";
+		return "Se ha repetido el ID en "+exceptions+" ocasiones" + "\nEl proceso de asignación de ids ha finalizado";
 	}
 }

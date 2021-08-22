@@ -13,7 +13,7 @@ public class Controller {
 	}
 	
 	public void funcionar() {
-		System.out.println(model.getManager().readFile());
+		System.out.println(model.getManager().uploadData());
 		System.out.println(model.getManager().assignID());
 	}
 }

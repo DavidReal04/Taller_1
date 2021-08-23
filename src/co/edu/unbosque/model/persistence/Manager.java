@@ -137,21 +137,109 @@ public class Manager {
 	}
 	
 	public String countBySpecies(String species) {
-		int canino=0;
-		int felino=0;
+		int contador=0;
 		for (int i = 0; i < petList.size(); i++) {
-			if(petList.get(i).getSpecies().equals("CANINO")) {
-				canino++;
-			} else if(petList.get(i).getSpecies().equals("FELINO")) {
-				felino++;
+			if(petList.get(i).getSpecies().equals(species.toUpperCase())) {
+				contador++;
 			}
 		}
-		if(species.equals("CANINO")) {
-			return "Canino: "+canino;
-		} else if (species.equals("FELINO")) {
-			return "Felino: "+felino;
-		} else {
+		if(contador==0) {
 			return "Ingrese una especie válida";
+		} else {
+			return species+": "+contador;
+		} 
+	}
+
+	public String countByNeighborhood() {
+		int usaquen =0;
+		int chapinero=0;
+		int santaFe=0;
+		int sanCristobal=0;
+		int usme=0;
+		int tunjuelito=0;
+		int bosa=0;
+		int kennedy=0;
+		int fontibon=0;
+		int engativa=0;
+		int suba=0;
+		int bUnidos=0;
+		int teusaquillo=0;
+		int losMartires=0;
+		int aNariño=0;
+		int pAranda=0;
+		int candelaria=0;
+		int rUribe=0;
+		int cBolivar=0;
+		int sumapaz=0;
+		int municipios=0;
+		int sinIdentificar=0;
+		for (int i = 0; i < petList.size(); i++) {
+			if(petList.get(i).getNeighborhood().equals("USAQUEN")) {
+				usaquen++;
+			} else if(petList.get(i).getNeighborhood().equals("CHAPINERO")) {
+				chapinero++;
+			} else if(petList.get(i).getNeighborhood().equals("SANTA FE")) {
+				santaFe++;
+			} else if(petList.get(i).getNeighborhood().equals("SAN CRISTOBAL")) {
+				sanCristobal++;
+			} else if(petList.get(i).getNeighborhood().equals("USME")) {
+				usme++;
+			} else if(petList.get(i).getNeighborhood().equals("TUNJUELITO")) {
+				tunjuelito++;
+			}else if(petList.get(i).getNeighborhood().equals("BOSA")) {
+				bosa++;
+			}else if(petList.get(i).getNeighborhood().equals("KENNEDY")) {
+				kennedy++;
+			}else if(petList.get(i).getNeighborhood().equals("FONTIBON")) {
+				fontibon++;
+			}else if(petList.get(i).getNeighborhood().equals("ENGATIVA")) {
+				engativa++;
+			} else if(petList.get(i).getNeighborhood().equals("SUBA")) {
+				suba++;
+			} else if(petList.get(i).getNeighborhood().equals("B. UNIDOS")) {
+				bUnidos++;
+			} else if(petList.get(i).getNeighborhood().equals("TEUSAQUILLO")) {
+				teusaquillo++;
+			} else if(petList.get(i).getNeighborhood().equals("LOS MARTIRES")) {
+				losMartires++;
+			}else if(petList.get(i).getNeighborhood().equals("A. NARINO")) {
+				aNariño++;
+			} else if(petList.get(i).getNeighborhood().equals("P. ARANDA")) {
+				pAranda++;
+			} else if(petList.get(i).getNeighborhood().equals("LA CANDELARIA")) {
+				candelaria++;
+			} else if(petList.get(i).getNeighborhood().equals("R. URIBE")) {
+				rUribe++;
+			} else if(petList.get(i).getNeighborhood().equals("C. BOLIVAR")) {
+				cBolivar++;
+			} else if(petList.get(i).getNeighborhood().equals("SUMAPAZ")) {
+				sumapaz++; 
+			} else if(petList.get(i).getNeighborhood().equals("MUNICIPIOS ALEDAÑOS BOGOTA D.C.")) {
+				municipios++;
+			} else if(petList.get(i).getNeighborhood().equals("SIN IDENTIFICAR")) {
+				sinIdentificar++;
+			}
+			
+		}
+		return "Usaquén: "+usaquen+"\nChapinero: "+chapinero+"\nSanta Fé: "+santaFe+"\nSan Cristóbal: "+sanCristobal
+				+"\nUsme: "+usme+"\nTunjuelito: "+tunjuelito+"\nBosa: "+bosa+"\nKennedy: "+kennedy+"\nFontibón: "+fontibon
+				+"\nEngativa: "+engativa+"\nSuba: "+suba+"\nBarrios Unidos: "+bUnidos+"\nTeusaquillo: "+teusaquillo
+				+"\nLos Mártires: "+losMartires+"\nAntonio Nariño: "+aNariño+"\nPuente Aranda: "+pAranda+"\nLa Candelaria: "+candelaria
+				+"\nRafael Uribe Uribe: "+rUribe+"\nCiudad Bolívar: "+cBolivar+"\nSumapaz: "+sumapaz+"\nMunicipios Aledaños: "+municipios
+				+"\nSin Identificar:"+sinIdentificar;
+	}
+
+	public String countByNeighborhood(String neigborhood) {
+		int contador=0;
+		for (int i = 0; i < petList.size(); i++) {
+			if(petList.get(i).getNeighborhood().equals(neigborhood.toUpperCase())) {
+				contador++;
+			}
+		}
+		if(contador==0) {
+			return "Ingrese un barrio válido";
+		} else {
+			return neigborhood+": "+contador;
 		} 
 	}
 }

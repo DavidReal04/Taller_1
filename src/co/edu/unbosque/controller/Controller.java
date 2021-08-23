@@ -17,5 +17,8 @@ public class Controller {
 		System.out.println(model.getManager().assignID());
 		System.out.println(model.getManager().findByMicrochip(Long.parseLong("966000101057611")));
 		System.out.println(model.getManager().countBySpecies());
+		System.out.println(model.getManager().countBySpecies("canino"));
+		System.out.println(model.getManager().countByNeighborhood());
+		System.out.println(model.getManager().countByNeighborhood("Suba"));
 	}
 }

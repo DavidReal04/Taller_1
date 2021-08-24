@@ -104,7 +104,7 @@ public class Manager {
 		return "Se ha repetido el ID en "+exceptions+" ocasiones" + "\nEl proceso de asignación de ids ha finalizado";
 	}
 
-	public Pet findByMicrochip(long microchip) {
+	public String findByMicrochip(long microchip) {
 		boolean flag = false;
 		try {
 			for (int i = 0; i < petList.size(); i++) {
@@ -118,9 +118,9 @@ public class Manager {
 				throw new InvalidMicrochipException();
 			}
 		} catch (InvalidMicrochipException e) {
-			return null;
+			return "El Microchip ingresado no existe";
 		}
-		return pet;
+		return pet.toString();
 	}
 
 	public String countBySpecies() {

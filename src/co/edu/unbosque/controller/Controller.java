@@ -37,10 +37,10 @@ public class Controller {
 			case 3:
 				view.write("Si desea ingrese la especie (Canino, Felino), si desea ver ambas deje en blanco");
 				aux=view.readLine();
-				if(aux.equals("Canino") || aux.equals("Felino")) {
-					view.write(model.getManager().countBySpecies(aux));
-				}else{
+				if(aux.equals("")) {
 					view.write(model.getManager().countBySpecies());
+				}else{
+					view.write(model.getManager().countBySpecies(aux));
 				}
 				break;
 			case 4: 
@@ -55,6 +55,7 @@ public class Controller {
 				}
 				break;
 			case 5: 
+				view.write(model.getManager().findByMultipleFields(0, "position", "species", "sex", "size", false, "neighborhood").toString());
 				break;
 			case 6:
 				view.write("Hasta Pronto");

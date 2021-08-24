@@ -39,7 +39,7 @@ public class Manager {
 				}
 				pet.setSpecies(partes[1]);
 				pet.setSex(partes[2]);
-				pet.setSize(partes[3]);
+				pet.setSize(partes[3].replace("Muy Grande", "Grande"));
 				pet.setPotentDangerous(Boolean.parseBoolean(partes[4].replace("SI", "True")));
 				pet.setNeighborhood(partes[5]);
 				petList.add(pet = new Pet("NO ASIGNADO", pet.getMicrochip(), pet.getSpecies(), pet.getSex(), pet.getSize(), pet.isPotentDangerous(), pet.getNeighborhood()));
@@ -241,5 +241,9 @@ public class Manager {
 		} else {
 			return neigborhood+": "+contador;
 		} 
+	}
+
+	public ArrayList<Pet> findByMultipleFields(int n, String position, String species,String sex, String size,boolean potentDangerous, String neighborhood) {
+		return petList;
 	}
 }

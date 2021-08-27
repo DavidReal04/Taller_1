@@ -243,7 +243,31 @@ public class Manager {
 		} 
 	}
 
-	public ArrayList<Pet> findByMultipleFields(int n, String position, String species,String sex, String size,boolean potentDangerous, String neighborhood) {
-		return petList;
+	public String findByMultipleFields(int n, String position, String species,String sex, String size,boolean potentDangerous, String neighborhood) {
+		String list="";
+		if((position.equals("CANINO")||position.equals("FELINO")) && (sex.equals("MACHO")||sex.equals("HEMBRA"))) {
+			for (int i = 0; i < n; i++) {
+				Pet pet= petList.get(i);
+				if(pet.getSpecies().equals(species) && pet.getSex().equals(sex)) {
+					list += (petList.get(i))+"/n";
+				}
+		}
+		
+		}
+		return list;
+	}
+	
+	public String findByMultipleFields(int n, String position, String species,String sex, String size, String neighborhood) {
+		String list="";
+		if(position.equals("CANINO")||position.equals("FELINO")) {
+			
+		}
+		for (int i = 0; i < n; i++) {
+			if(petList.get(i).getSpecies().equals(species)) {
+				list += (petList.get(i))+"/n";
+			}
+			
+		}
+		return list;
 	}
 }

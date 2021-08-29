@@ -56,10 +56,10 @@ public class Controller {
 				break;
 			case 5: 
 				view.write("Escriba al menos un parámetro de búsqueda (Deje en blanco los que no use)");
-				view.write("Número de registros a mostrar (Por defecto se muestran 15 registros)");
+				view.write("Número de registros a mostrar (Por defecto se muestran lo primeros 15 registros)");
 				int n = 0;
 				n = view.readNum();
-				view.write("Posición (Primeros||Últimos)");
+				view.write("Posición (TOP||LAST)");
 				String position= view.readLine().toUpperCase();
 				view.write("Especie");
 				String species= view.readLine().toUpperCase();

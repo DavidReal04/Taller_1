@@ -243,30 +243,603 @@ public class Manager {
 		} 
 	}
 
-	public String findByMultipleFields(int n, String position, String species,String sex, String size,boolean potentDangerous, String neighborhood) {
+	public String findByMultipleFields(int n, String position, String species,String sex, String size, boolean potentDangerous, String neighborhood) {
 		String list="";
-		if((position.equals("CANINO")||position.equals("FELINO")) && (sex.equals("MACHO")||sex.equals("HEMBRA"))) {
-			for (int i = 0; i < n; i++) {
-				Pet pet= petList.get(i);
-				if(pet.getSpecies().equals(species) && pet.getSex().equals(sex)) {
-					list += (petList.get(i))+"/n";
+		int contador=0;
+		if (n==0) {n=15;} //Registros mostrados por defecto
+		//Si el usuario quiere los primeros (por defecto)
+		if(position.equals("TOP") || position.isEmpty()) {
+			//Todos los campos ingresados
+			if(!species.isEmpty() && !sex.isEmpty() && !size.isEmpty() && !neighborhood.isEmpty()) {
+				for (int i = 0; i < petList.size(); i++) {
+					Pet pet = petList.get(i);
+					if(pet.getSpecies().equals(species) && pet.getSex().equals(sex) && pet.getSize().equals(size) && pet.isPotentDangerous()==potentDangerous && pet.getNeighborhood().equals(neighborhood)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=petList.size();
+						}
+					}
 				}
-		}
-		
+			//Sólamente potentDangerous
+			}else if(species.isEmpty() && sex.isEmpty() && size.isEmpty() && neighborhood.isEmpty()) {
+				for (int i = 0; i < petList.size(); i++) {
+					Pet pet = petList.get(i);
+					if(pet.isPotentDangerous()==potentDangerous) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=petList.size();
+						}
+					}
+				}
+			//Todos los campos menos species
+			}else if(species.isEmpty() && !sex.isEmpty() && !size.isEmpty() && !neighborhood.isEmpty()){
+				for (int i = 0; i < petList.size(); i++) {
+					Pet pet = petList.get(i);
+					if(pet.getSex().equals(sex) && pet.getSize().equals(size) && pet.isPotentDangerous()==potentDangerous && pet.getNeighborhood().equals(neighborhood)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=petList.size();
+						}
+					}
+				}
+			//Todos los campos menos sex
+			}else if(!species.isEmpty() && sex.isEmpty() && !size.isEmpty() && !neighborhood.isEmpty()) {
+				for (int i = 0; i < petList.size(); i++) {
+					Pet pet = petList.get(i);
+					if(pet.getSpecies().equals(species) && pet.getSize().equals(size) && pet.isPotentDangerous()==potentDangerous && pet.getNeighborhood().equals(neighborhood)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=petList.size();
+						}
+					}
+				}
+			//Todos los campos menos size
+			}else if(!species.isEmpty() && !sex.isEmpty() && size.isEmpty() && !neighborhood.isEmpty()) {
+				for (int i = 0; i < petList.size(); i++) {
+					Pet pet = petList.get(i);
+					if(pet.getSpecies().equals(species) && pet.getSex().equals(sex) && pet.isPotentDangerous()==potentDangerous && pet.getNeighborhood().equals(neighborhood)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=petList.size();
+						}
+					}
+				}
+			//Todos los campos menos neigborhood
+			} else if(!species.isEmpty() && !sex.isEmpty() && !size.isEmpty() && neighborhood.isEmpty()) {
+				for (int i = 0; i < petList.size(); i++) {
+					Pet pet = petList.get(i);
+					if(pet.getSpecies().equals(species) && pet.getSex().equals(sex) && pet.getSize().equals(size) && pet.isPotentDangerous()==potentDangerous) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=petList.size();
+						}
+					}
+				}
+			// Species y sex
+			} else if(!species.isEmpty() && !sex.isEmpty() && size.isEmpty() && neighborhood.isEmpty()) {
+				for (int i = 0; i < petList.size(); i++) {
+					Pet pet = petList.get(i);
+					if(pet.getSpecies().equals(species) && pet.getSex().equals(sex) && pet.isPotentDangerous()==potentDangerous) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=petList.size();
+						}
+					}
+				}
+			// Species y size
+			} else if(!species.isEmpty() && sex.isEmpty() && !size.isEmpty() && neighborhood.isEmpty()) {
+				for (int i = 0; i < petList.size(); i++) {
+					Pet pet = petList.get(i);
+					if(pet.getSpecies().equals(species) && pet.getSize().equals(size) && pet.isPotentDangerous()==potentDangerous) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=petList.size();
+						}
+					}
+				}
+			//Species y neigborhood
+			} else if(!species.isEmpty() && sex.isEmpty() && size.isEmpty() && !neighborhood.isEmpty()) {
+				for (int i = 0; i < petList.size(); i++) {
+					Pet pet = petList.get(i);
+					if(pet.getSpecies().equals(species) && pet.isPotentDangerous()==potentDangerous && pet.getNeighborhood().equals(neighborhood)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=petList.size();
+						}
+					}
+				}
+			//Sex y size
+			} else if(species.isEmpty() && !sex.isEmpty() && !size.isEmpty() && neighborhood.isEmpty()) {
+				for (int i = 0; i < petList.size(); i++) {
+					Pet pet = petList.get(i);
+					if(pet.getSex().equals(sex) && pet.getSize().equals(size) && pet.isPotentDangerous()==potentDangerous) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=petList.size();
+						}
+					}
+				}
+			//Sex y neigborhood
+			} else if(species.isEmpty() && !sex.isEmpty() && size.isEmpty() && !neighborhood.isEmpty()) {
+				for (int i = 0; i < petList.size(); i++) {
+					Pet pet = petList.get(i);
+					if(pet.getSex().equals(sex) && pet.isPotentDangerous()==potentDangerous && pet.getNeighborhood().equals(neighborhood)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=petList.size();
+						}
+					}
+				}
+			//Size y neigborhood
+			} else if(species.isEmpty() && sex.isEmpty() && !size.isEmpty() && !neighborhood.isEmpty()) {
+				for (int i = 0; i < petList.size(); i++) {
+					Pet pet = petList.get(i);
+					if(pet.getSize().equals(size) && pet.isPotentDangerous()==potentDangerous && pet.getNeighborhood().equals(neighborhood)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=petList.size();
+						}
+					}
+				}
+			}
+		//Si el usuario quiere los úlimos
+		}else if(position.equals("LAST")) {
+			
+			//Todos los campos ingresados
+			if(!species.isEmpty() && !sex.isEmpty() && !size.isEmpty() && !neighborhood.isEmpty()) {
+				for (int i = petList.size()-1; i > -1; i--) {
+					Pet pet = petList.get(i);
+					if(pet.getSpecies().equals(species) && pet.getSex().equals(sex) && pet.getSize().equals(size) && pet.isPotentDangerous()==potentDangerous && pet.getNeighborhood().equals(neighborhood)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=-1;
+						}
+					}
+				}
+			//Sólamente potentDangerous
+			}else if(species.isEmpty() && sex.isEmpty() && size.isEmpty() && neighborhood.isEmpty()) {
+				for (int i = petList.size()-1; i > -1; i--) {
+					Pet pet = petList.get(i);
+					if(pet.isPotentDangerous()==potentDangerous) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=-1;
+						}
+					}
+				}
+			//Todos los campos menos species
+			}else if(species.isEmpty() && !sex.isEmpty() && !size.isEmpty() && !neighborhood.isEmpty()){
+				for (int i = petList.size()-1; i > -1; i--) {
+					Pet pet = petList.get(i);
+					if(pet.getSex().equals(sex) && pet.getSize().equals(size) && pet.isPotentDangerous()==potentDangerous && pet.getNeighborhood().equals(neighborhood)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=-1;
+						}
+					}
+				}
+			//Todos los campos menos sex
+			}else if(!species.isEmpty() && sex.isEmpty() && !size.isEmpty() && !neighborhood.isEmpty()) {
+				for (int i = petList.size()-1; i > -1; i--) {
+					Pet pet = petList.get(i);
+					if(pet.getSpecies().equals(species) && pet.getSize().equals(size) && pet.isPotentDangerous()==potentDangerous && pet.getNeighborhood().equals(neighborhood)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=-1;
+						}
+					}
+				}
+			//Todos los campos menos size
+			}else if(!species.isEmpty() && !sex.isEmpty() && size.isEmpty() && !neighborhood.isEmpty()) {
+				for (int i = petList.size()-1; i > -1; i--) {
+					Pet pet = petList.get(i);
+					if(pet.getSpecies().equals(species) && pet.getSex().equals(sex) && pet.isPotentDangerous()==potentDangerous && pet.getNeighborhood().equals(neighborhood)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=-1;
+						}
+					}
+				}
+			//Todos los campos menos neigborhood
+			} else if(!species.isEmpty() && !sex.isEmpty() && !size.isEmpty() && neighborhood.isEmpty()) {
+				for (int i = petList.size()-1; i > -1; i--) {
+					Pet pet = petList.get(i);
+					if(pet.getSpecies().equals(species) && pet.getSex().equals(sex) && pet.getSize().equals(size) && pet.isPotentDangerous()==potentDangerous) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=-1;
+						}
+					}
+				}
+			// Species y sex
+			} else if(!species.isEmpty() && !sex.isEmpty() && size.isEmpty() && neighborhood.isEmpty()) {
+				for (int i = petList.size()-1; i > -1; i--) {
+					Pet pet = petList.get(i);
+					if(pet.getSpecies().equals(species) && pet.getSex().equals(sex) && pet.isPotentDangerous()==potentDangerous) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=-1;
+						}
+					}
+				}
+			// Species y size
+			} else if(!species.isEmpty() && sex.isEmpty() && !size.isEmpty() && neighborhood.isEmpty()) {
+				for (int i = petList.size()-1; i > -1; i--) {
+					Pet pet = petList.get(i);
+					if(pet.getSpecies().equals(species) && pet.getSize().equals(size) && pet.isPotentDangerous()==potentDangerous) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=-1;
+						}
+					}
+				}
+			//Species y neigborhood
+			} else if(!species.isEmpty() && sex.isEmpty() && size.isEmpty() && !neighborhood.isEmpty()) {
+				for (int i = petList.size()-1; i > -1; i--) {
+					Pet pet = petList.get(i);
+					if(pet.getSpecies().equals(species) && pet.isPotentDangerous()==potentDangerous && pet.getNeighborhood().equals(neighborhood)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=-1;
+						}
+					}
+				}
+			//Sex y size
+			} else if(species.isEmpty() && !sex.isEmpty() && !size.isEmpty() && neighborhood.isEmpty()) {
+				for (int i = petList.size()-1; i > -1; i--) {
+					Pet pet = petList.get(i);
+					if(pet.getSex().equals(sex) && pet.getSize().equals(size) && pet.isPotentDangerous()==potentDangerous) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=-1;
+						}
+					}
+				}
+			//Sex y neigborhood
+			} else if(species.isEmpty() && !sex.isEmpty() && size.isEmpty() && !neighborhood.isEmpty()) {
+				for (int i = petList.size()-1; i > -1; i--) {
+					Pet pet = petList.get(i);
+					if(pet.getSex().equals(sex) && pet.isPotentDangerous()==potentDangerous && pet.getNeighborhood().equals(neighborhood)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=-1;
+						}
+					}
+				}
+			//Size y neigborhood
+			} else if(species.isEmpty() && sex.isEmpty() && !size.isEmpty() && !neighborhood.isEmpty()) {
+				for (int i = petList.size()-1; i > -1; i--) {
+					Pet pet = petList.get(i);
+					if(pet.getSize().equals(size) && pet.isPotentDangerous()==potentDangerous && pet.getNeighborhood().equals(neighborhood)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=-1;
+						}
+					}
+				}
+			}
 		}
 		return list;
 	}
 	
 	public String findByMultipleFields(int n, String position, String species,String sex, String size, String neighborhood) {
 		String list="";
-		if(position.equals("CANINO")||position.equals("FELINO")) {
-			
-		}
-		for (int i = 0; i < n; i++) {
-			if(petList.get(i).getSpecies().equals(species)) {
-				list += (petList.get(i))+"/n";
+		int contador=0;
+		if (n==0) {n=15;} //Registros mostrados por defecto
+		//Si el usuario quiere los primeros (por defecto)
+		if(position.equals("TOP") || position.isEmpty()) {
+			//Todos los campos ingresados
+			if(!species.isEmpty() && !sex.isEmpty() && !size.isEmpty() && !neighborhood.isEmpty()) {
+				for (int i = 0; i < petList.size(); i++) {
+					Pet pet = petList.get(i);
+					if(pet.getSpecies().equals(species) && pet.getSex().equals(sex) && pet.getSize().equals(size)&& pet.getNeighborhood().equals(neighborhood)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=petList.size();
+						}
+					}
+				}
+			//Ningún campo
+			} else if(species.isEmpty() && sex.isEmpty() && size.isEmpty() && neighborhood.isEmpty()) {
+				for (int i = 0; i < petList.size(); i++) {
+					Pet pet = petList.get(i);
+					list += (pet)+"\n";
+					contador++;
+					if(contador==n){
+						i=petList.size();
+					}
+				}
+			//Todos los campos menos species
+			}else if(species.isEmpty() && !sex.isEmpty() && !size.isEmpty() && !neighborhood.isEmpty()){
+				for (int i = 0; i < petList.size(); i++) {
+					Pet pet = petList.get(i);
+					if(pet.getSex().equals(sex) && pet.getSize().equals(size) && pet.getNeighborhood().equals(neighborhood)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=petList.size();
+						}
+					}
+				}
+			//Todos los campos menos sex
+			}else if(!species.isEmpty() && sex.isEmpty() && !size.isEmpty() && !neighborhood.isEmpty()) {
+				for (int i = 0; i < petList.size(); i++) {
+					Pet pet = petList.get(i);
+					if(pet.getSpecies().equals(species) && pet.getSize().equals(size) && pet.getNeighborhood().equals(neighborhood)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=petList.size();
+						}
+					}
+				}
+			//Todos los campos menos size
+			}else if(!species.isEmpty() && !sex.isEmpty() && size.isEmpty() && !neighborhood.isEmpty()) {
+				for (int i = 0; i < petList.size(); i++) {
+					Pet pet = petList.get(i);
+					if(pet.getSpecies().equals(species) && pet.getSex().equals(sex) && pet.getNeighborhood().equals(neighborhood)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=petList.size();
+						}
+					}
+				}
+			//Todos los campos menos neigborhood
+			} else if(!species.isEmpty() && !sex.isEmpty() && !size.isEmpty() && neighborhood.isEmpty()) {
+				for (int i = 0; i < petList.size(); i++) {
+					Pet pet = petList.get(i);
+					if(pet.getSpecies().equals(species) && pet.getSex().equals(sex) && pet.getSize().equals(size)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=petList.size();
+						}
+					}
+				}
+			// Species y sex
+			} else if(!species.isEmpty() && !sex.isEmpty() && size.isEmpty() && neighborhood.isEmpty()) {
+				for (int i = 0; i < petList.size(); i++) {
+					Pet pet = petList.get(i);
+					if(pet.getSpecies().equals(species) && pet.getSex().equals(sex)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=petList.size();
+						}
+					}
+				}
+			// Species y size
+			} else if(!species.isEmpty() && sex.isEmpty() && !size.isEmpty() && neighborhood.isEmpty()) {
+				for (int i = 0; i < petList.size(); i++) {
+					Pet pet = petList.get(i);
+					if(pet.getSpecies().equals(species) && pet.getSize().equals(size)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=petList.size();
+						}
+					}
+				}
+			//Species y neigborhood
+			} else if(!species.isEmpty() && sex.isEmpty() && size.isEmpty() && !neighborhood.isEmpty()) {
+				for (int i = 0; i < petList.size(); i++) {
+					Pet pet = petList.get(i);
+					if(pet.getSpecies().equals(species) && pet.getNeighborhood().equals(neighborhood)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=petList.size();
+						}
+					}
+				}
+			//Sex y size
+			} else if(species.isEmpty() && !sex.isEmpty() && !size.isEmpty() && neighborhood.isEmpty()) {
+				for (int i = 0; i < petList.size(); i++) {
+					Pet pet = petList.get(i);
+					if(pet.getSex().equals(sex) && pet.getSize().equals(size)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=petList.size();
+						}
+					}
+				}
+			//Sex y neigborhood
+			} else if(species.isEmpty() && !sex.isEmpty() && size.isEmpty() && !neighborhood.isEmpty()) {
+				for (int i = 0; i < petList.size(); i++) {
+					Pet pet = petList.get(i);
+					if(pet.getSex().equals(sex) && pet.getNeighborhood().equals(neighborhood)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=petList.size();
+						}
+					}
+				}
+			//Size y neigborhood
+			} else if(species.isEmpty() && sex.isEmpty() && !size.isEmpty() && !neighborhood.isEmpty()) {
+				for (int i = 0; i < petList.size(); i++) {
+					Pet pet = petList.get(i);
+					if(pet.getSize().equals(size) && pet.getNeighborhood().equals(neighborhood)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=petList.size();
+						}
+					}
+				}
 			}
-			
+		//Si el usuario quiere los úlimos
+		}else if(position.equals("LAST")) {
+			//Todos los campos ingresados
+			if(!species.isEmpty() && !sex.isEmpty() && !size.isEmpty() && !neighborhood.isEmpty()) {
+				for (int i = petList.size()-1; i > -1; i--) {
+					Pet pet = petList.get(i);
+					if(pet.getSpecies().equals(species) && pet.getSex().equals(sex) && pet.getSize().equals(size) && pet.getNeighborhood().equals(neighborhood)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=-1;
+						}
+					}
+				}
+			//Ningún campo
+			}else if(species.isEmpty() && sex.isEmpty() && size.isEmpty() && neighborhood.isEmpty()) {
+				for (int i = petList.size()-1; i > -1; i--) {
+					Pet pet = petList.get(i);
+					list += (pet)+"\n";
+					contador++;
+					if(contador==n){
+						i=-1;
+					}
+				}
+			//Todos los campos menos Species
+			}else if(species.isEmpty() && !sex.isEmpty() && !size.isEmpty() && !neighborhood.isEmpty()) {
+				for (int i = petList.size()-1; i > -1; i--) {
+					Pet pet = petList.get(i);
+					if(pet.getSex().equals(sex) && pet.getSize().equals(size) && pet.getNeighborhood().equals(neighborhood)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=-1;
+						}
+					}
+				}
+			//Todos los campos menos sex
+			}else if(!species.isEmpty() && sex.isEmpty() && !size.isEmpty() && !neighborhood.isEmpty()) {
+				for (int i = petList.size()-1; i > -1; i--) {
+					Pet pet = petList.get(i);
+					if(pet.getSpecies().equals(species) && pet.getSize().equals(size) && pet.getNeighborhood().equals(neighborhood)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=-1;
+						}
+					}
+				}
+			//Todos los campos menos size
+			}else if(!species.isEmpty() && !sex.isEmpty() && size.isEmpty() && !neighborhood.isEmpty()) {
+				for (int i = petList.size()-1; i > -1; i--) {
+					Pet pet = petList.get(i);
+					if(pet.getSpecies().equals(species) && pet.getSex().equals(sex) && pet.getNeighborhood().equals(neighborhood)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=-1;
+						}
+					}
+				}
+			//Todos los campos menos neigborhood
+			} else if(!species.isEmpty() && !sex.isEmpty() && !size.isEmpty() && neighborhood.isEmpty()) {
+				for (int i = petList.size()-1; i > -1; i--) {
+					Pet pet = petList.get(i);
+					if(pet.getSpecies().equals(species) && pet.getSex().equals(sex) && pet.getSize().equals(size)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=-1;
+						}
+					}
+				}
+			// Species y sex
+			} else if(!species.isEmpty() && !sex.isEmpty() && size.isEmpty() && neighborhood.isEmpty()) {
+				for (int i = petList.size()-1; i > -1; i--) {
+					Pet pet = petList.get(i);
+					if(pet.getSpecies().equals(species) && pet.getSex().equals(sex)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=-1;
+						}
+					}
+				}
+			// Species y size
+			} else if(!species.isEmpty() && sex.isEmpty() && !size.isEmpty() && neighborhood.isEmpty()) {
+				for (int i = petList.size()-1; i > -1; i--) {
+					Pet pet = petList.get(i);
+					if(pet.getSpecies().equals(species) && pet.getSize().equals(size)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=-1;
+						}
+					}
+				}
+			//Species y neigborhood
+			} else if(!species.isEmpty() && sex.isEmpty() && size.isEmpty() && !neighborhood.isEmpty()) {
+				for (int i = petList.size()-1; i > -1; i--) {
+					Pet pet = petList.get(i);
+					if(pet.getSpecies().equals(species) && pet.getNeighborhood().equals(neighborhood)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=-1;
+						}
+					}
+				}
+			//Sex y size
+			} else if(species.isEmpty() && !sex.isEmpty() && !size.isEmpty() && neighborhood.isEmpty()) {
+				for (int i = petList.size()-1; i > -1; i--) {
+					Pet pet = petList.get(i);
+					if(pet.getSex().equals(sex) && pet.getSize().equals(size)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=-1;
+						}
+					}
+				}
+			//Sex y neigborhood
+			} else if(species.isEmpty() && !sex.isEmpty() && size.isEmpty() && !neighborhood.isEmpty()) {
+				for (int i = petList.size()-1; i > -1; i--) {
+					Pet pet = petList.get(i);
+					if(pet.getSex().equals(sex) && pet.getNeighborhood().equals(neighborhood)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=-1;
+						}
+					}
+				}
+			//Size y neigborhood
+			} else if(species.isEmpty() && sex.isEmpty() && !size.isEmpty() && !neighborhood.isEmpty()) {
+				for (int i = petList.size()-1; i > -1; i--) {
+					Pet pet = petList.get(i);
+					if(pet.getSize().equals(size) && pet.getNeighborhood().equals(neighborhood)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=-1;
+						}
+					}
+				}
+			}
 		}
 		return list;
 	}

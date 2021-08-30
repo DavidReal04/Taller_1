@@ -8,17 +8,35 @@ import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
 
-
+/**
+ * Clase DAO del proyecto
+ * @author David Real
+ */
 public class Manager {
-
+	/**
+	 * Objeto de Pet que permite acceder a sus atributos y métodos
+	 */
 	private Pet pet;
+	/**
+	 * Objeto de tipo ArrayList que almacena objetos Pet
+	 */
 	private ArrayList<Pet> petList = new ArrayList<>();
+	/**
+	 * Objeto de JFileChooser que permite seleccionar el archivo
+	 */
 	private JFileChooser file = new JFileChooser();
 	
+	/**
+	 * Método constructor de la clase Manager
+	 */
 	public Manager() {
 		pet = new Pet(null, 0, null, null, null, false, null);
 	}
-	
+	/**
+	 * Método que realiza la carga del archivo, crea objetos de Pet y los añade a la lista
+	 * 
+	 * @return String que muestra los registros exitosos y fallidos, e indica la finalización de la carga
+	 */
 	public String uploadData() {
 		String linea="";
 		String cadena="";
@@ -53,19 +71,25 @@ public class Manager {
 				}
 				linea=br.readLine();
 			}
-			cadena = "Registros Existosos: "+ exitosos +" || Registros Fallidos: " + fallidos;
+			cadena = "Registros Exitosos: "+ exitosos +" || Registros Fallidos: " + fallidos;
 			fr.close();
 		} catch (IOException e) {
 			return null;
 		}
 		return cadena + "\nEl proceso de carga del archivo ha finalizado";
 	}
-	
+	/**
+	 * Método que asigna los ID de acuerdo con los criterios requeridos
+	 * 
+	 * @return String que dice cuántas veces hubo IDs repetidos, e indica que se terminó la asignación
+	 */
 	public String assignID() {
 		String id="";
 		int exceptions=0;
+		//Bucle que recorre todo el Arraylist de Pet uno a uno 
 		for(int i=0;i<petList.size();i++) {
 			int digits=2;
+			//Guarda cada campo del objeto Pet y les asigna el valor correspondiente
 			String microchip = String.valueOf(petList.get(i).getMicrochip());
 			microchip = microchip.substring(microchip.length()-digits);
 			String species = petList.get(i).getSpecies();
@@ -79,10 +103,13 @@ public class Manager {
 				size = size.substring(0, 1);
 			}
 			String potentDangerous = String.valueOf(petList.get(i).isPotentDangerous()).substring(0, 1).toUpperCase();
+			//Arma el ID usando los valores que guardó antes
 			id = microchip+"-"+species+sex+size+potentDangerous;
 			boolean flag = false;
+			//Bucle del que se sale sólamente cuando se haya asignado el Id
 			while(!flag) {
 				try {
+					//Bucle para verificar que el ID no existe y asignarlo
 					for(int j=i;j>0;j--) {
 						if(id.equals(petList.get(j).getId())) {
 							throw new IdentifierExistsException();
@@ -103,10 +130,15 @@ public class Manager {
 		}
 		return "Se ha repetido el ID en "+exceptions+" ocasiones" + "\nEl proceso de asignación de ids ha finalizado";
 	}
-
+	/**
+	 * Método que recibe por parámetro un long que corresponde al microchip que se quiere encontrar 
+	 * @param microchip
+	 * @return String con el objeto Pet correspondiente al microchip
+	 */
 	public String findByMicrochip(long microchip) {
 		boolean flag = false;
 		try {
+			//Bucle que compara cada atributo Microchip de los objetos Pet en la lista con el long pasado por parámetro
 			for (int i = 0; i < petList.size(); i++) {
 				if(petList.get(i).getMicrochip()==microchip) {
 					pet=petList.get(i);
@@ -122,10 +154,14 @@ public class Manager {
 		}
 		return pet.toString();
 	}
-
+	/**
+	 * Método que cuenta la cantidad de animales por especie
+	 * @return String con la cantidad de Caninos y Felinos respectivamente
+	 */
 	public String countBySpecies() {
 		int canino=0;
 		int felino=0;
+		//Bucle con dos condicionales que recorre toda la lista petList 
 		for (int i = 0; i < petList.size(); i++) {
 			if(petList.get(i).getSpecies().equals("CANINO")) {
 				canino++;
@@ -135,9 +171,14 @@ public class Manager {
 		}
 		return "Canino: "+canino+"\nFelino: "+felino;
 	}
-	
+	/**
+	 * Método que cuenta cantidad de animales de la especie pasada por parámetro
+	 * @param species
+	 * @return String con la cantidad animales de la especie pasada por parámetro
+	 */
 	public String countBySpecies(String species) {
 		int contador=0;
+		//Bucle con un condicional que recorre toda la lista petList
 		for (int i = 0; i < petList.size(); i++) {
 			if(petList.get(i).getSpecies().equals(species.toUpperCase())) {
 				contador++;
@@ -149,7 +190,10 @@ public class Manager {
 			return species+": "+contador;
 		} 
 	}
-
+	/**
+	 * Método que cuenta la cantidad de animales por barrio
+	 * @return String con la cantidad de animales de cada barrio
+	 */
 	public String countByNeighborhood() {
 		int usaquen =0;
 		int chapinero=0;
@@ -173,6 +217,7 @@ public class Manager {
 		int sumapaz=0;
 		int municipios=0;
 		int sinIdentificar=0;
+		//Bucle con múltiples condicionales que compara el atributo neighborhood con un texto y suma uno a la variable correspondiente
 		for (int i = 0; i < petList.size(); i++) {
 			if(petList.get(i).getNeighborhood().equals("USAQUEN")) {
 				usaquen++;
@@ -228,9 +273,14 @@ public class Manager {
 				+"\nRafael Uribe Uribe: "+rUribe+"\nCiudad Bolívar: "+cBolivar+"\nSumapaz: "+sumapaz+"\nMunicipios Aledaños: "+municipios
 				+"\nSin Identificar:"+sinIdentificar;
 	}
-
+	/**
+	 * Método que cuenta la cantidad de animales del barrio pasado por parámetro
+	 * @param neigborhood
+	 * @return String con la cantidad de animales del barrio pasado por parámetro
+	 */
 	public String countByNeighborhood(String neigborhood) {
 		int contador=0;
+		//Bucle con un condicional que compara el atributo neighborhood del Pet en la lista, con el pasado por parámetro y suma uno a la variable
 		for (int i = 0; i < petList.size(); i++) {
 			if(petList.get(i).getNeighborhood().equals(neigborhood.toUpperCase())) {
 				contador++;
@@ -242,7 +292,17 @@ public class Manager {
 			return neigborhood+": "+contador;
 		} 
 	}
-
+	/**
+	 * Método para búsqueda por diferentes parámetros
+	 * @param n
+	 * @param position
+	 * @param species
+	 * @param sex
+	 * @param size
+	 * @param potentDangerous
+	 * @param neighborhood
+	 * @return String con la lista de los objetos de Pet que coinciden con la búsqueda
+	 */
 	public String findByMultipleFields(int n, String position, String species,String sex, String size, boolean potentDangerous, String neighborhood) {
 		String list="";
 		int contador=0;
@@ -545,7 +605,16 @@ public class Manager {
 		}
 		return list;
 	}
-	
+	/**
+	 * Método para búsqueda por diferentes parámetros
+	 * @param n
+	 * @param position
+	 * @param species
+	 * @param sex
+	 * @param size
+	 * @param neighborhood
+	 * @return String con la lista de los objetos de Pet que coinciden con la búsqueda
+	 */
 	public String findByMultipleFields(int n, String position, String species,String sex, String size, String neighborhood) {
 		String list="";
 		int contador=0;

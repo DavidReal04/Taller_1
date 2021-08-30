@@ -1,15 +1,26 @@
 package co.edu.unbosque.view;
 
 import java.util.Scanner;
-
+/**
+ * Clase encargada mostrar y capturar datos ingresados por consolas
+ * @author David Real
+ *
+ */
 public class View {
-
+	/**
+	 * Objeto de Scanner que permite acceder a sus métodos
+	 */
 	private Scanner read;
-	
+	/**
+	 * Método constructor de la clase View
+	 */
 	public View() {
 		read = new Scanner(System.in);
 	}
-	
+	/**
+	 * Método que lee un número ingresado por consola
+	 * @return int con el número leído
+	 */
 	public int readNum() {
 		int aux=0;
 		try {
@@ -17,18 +28,23 @@ public class View {
 		} catch(NumberFormatException e) {}
 		return aux;
 	}
-	
+	/**
+	 * Método que lee el texto ingresado por consola
+	 * @return String con el texto leído
+	 */
 	public String readLine() {
 		return read.nextLine();
 	}
-	
+	/**
+	 * Método que escribe por consola lo pasado por parámetro
+	 * @param message
+	 */
 	public void write(String message) {
 		System.out.println(message);
 	}
-	
-	public void loadCSV() {
-		System.out.println("Ciudadanos de 4 Patas\n\nCargue el archivo con los registros");
-	}
+	/**
+	 * Método que imprime en consola el texto del menú del programa
+	 */
 	public void menu() {
 		System.out.println("\nCiudadanos de 4 Patas\n\n Escriba el número según la opción que desee"
 				+"\n1. Asigar ID a todos los animales"

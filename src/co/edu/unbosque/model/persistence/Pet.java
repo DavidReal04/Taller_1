@@ -1,19 +1,48 @@
 package co.edu.unbosque.model.persistence;
 
-import java.io.Serializable;
-
-public class Pet implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
-	
+/**
+ * Clase DTO del proyecto
+ * @author David Real
+ */
+public class Pet {
+	/**
+	 * Objeto de tipo String para el ID
+	 */
 	private String id;
+	/**
+	 * Objeto de tipo Long para el microchip
+	 */
 	private long microchip;
+	/**
+	 * Objeto de tipo String para la especie
+	 */
 	private String species;
+	/**
+	 * Objeto de tipo String para el sexo
+	 */
 	private String sex;
+	/**
+	 * Objeto de tipo String para el tamaño
+	 */
 	private String size;
+	/**
+	 * Objeto de tipo Booleano para potencialmente peligroso
+	 */
 	private boolean potentDangerous;
+	/**
+	 * Objeto de tipo String para el barrio
+	 */
 	private String neighborhood;
-	
+	/**
+	 * Método constructor de la clase Pet
+	 * @param id
+	 * @param microchip
+	 * @param species
+	 * @param sex
+	 * @param size
+	 * @param potentDangerous
+	 * @param neighborhood
+	 */
 	public Pet(String id, long microchip, String species, String sex, String size, boolean potentDangerous, String neighborhood) {
 		this.id = id;
 		this.microchip = microchip;
@@ -23,7 +52,15 @@ public class Pet implements Serializable{
 		this.potentDangerous = potentDangerous;
 		this.neighborhood = neighborhood;
 	}
-
+	/**
+	 * Sobreescritura del método toString() de Object
+	 */
+	public String toString() {
+		return "id: "+this.id+" || Microchip: "+this.microchip+" || Species: "+this.species+" || Size: "+this.size+" || PotentDangerous: "+this.potentDangerous+" || neighborhood: "+this.neighborhood;
+	}
+	
+	//Getters-Setters
+	
 	public String getId() {
 		return id;
 	}
@@ -79,7 +116,5 @@ public class Pet implements Serializable{
 	public void setNeighborhood(String neighborhood) {
 		this.neighborhood = neighborhood;
 	}
-	public String toString() {
-		return "id: "+this.id+" || Microchip: "+this.microchip+" || Species: "+this.species+" || Size: "+this.size+" || PotentDangerous: "+this.potentDangerous+" || neighborhood: "+this.neighborhood;
-	}
+
 }

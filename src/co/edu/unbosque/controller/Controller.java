@@ -38,6 +38,7 @@ public class Controller {
 			//Menú Switch-Case que da a elegir qué funcionaidad desea ejecutar
 			switch(option) {
 			case 1:
+				view.write("Asignando Ids\nPor favor Espere...");
 				view.write(model.getManager().assignID());
 				break;
 			case 2:
@@ -59,7 +60,7 @@ public class Controller {
 				break;
 			case 4: 
 				view.write("Si desea ingrese la localidad\n||Usaquen, Chapinero, Santa Fe, San Cristobal, Usme, Tunjuelito, Bosa"
-						+ ", Kennedy, Fontibon, Engativa, Suba, B. Unidos, Teusaquillo, Los Martires, A. Narino"
+						+ ", Kennedy, Fontibon, Engativa, Suba, B. Unidos, Teusaquillo, \nLos Martires, A. Narino"
 						+ ", P. Aranda, La Candelaria, R. Uribe, C. Bolivar, Sumapaz, Municipios Aledaños Bogota D.C.||");
 				aux=view.readLine();
 				if(aux.equals("")) {
@@ -84,12 +85,14 @@ public class Controller {
 				view.write("Potencialmente peligroso (Si||No)");
 				String potentDangerous = view.readLine().toUpperCase().replace("SI", "True").replace("NO", "False");
 				view.write("Barrio\n||Usaquen, Chapinero, Santa Fe, San Cristobal, Usme, Tunjuelito, Bosa"
-						+ ", Kennedy, Fontibon, Engativa, Suba, B. Unidos, Teusaquillo, Los Martires, A. Narino"
+						+ ", Kennedy, Fontibon, Engativa, Suba, B. Unidos, Teusaquillo, \nLos Martires, A. Narino"
 						+ ", P. Aranda, La Candelaria, R. Uribe, C. Bolivar, Sumapaz, Municipios Aledaños Bogota D.C.||");
 				String neighborhood= view.readLine().toUpperCase();
 				if(potentDangerous.isEmpty()) {
+					view.write("Resultados de la búsqueda\n");
 					view.write(model.getManager().findByMultipleFields(n, position, species, sex, size, neighborhood));
 				} else {
+					view.write("Resultados de la búsqueda\n");
 					view.write(model.getManager().findByMultipleFields(n, position, species, sex, size, Boolean.parseBoolean(potentDangerous), neighborhood));
 				}
 				break;

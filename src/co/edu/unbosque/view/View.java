@@ -48,7 +48,7 @@ public class View {
 	public void menu() {
 		System.out.println("\nCiudadanos de 4 Patas\n\n Escriba el número según la opción que desee"
 				+"\n1. Asigar ID a todos los animales"
-				+"\n2. Buscar por número de microhip"
+				+"\n2. Buscar por número de microchip"
 				+"\n3. Contar número de animales por especie (Si desea puede especificar la especie)"
 				+"\n4. Contar número de animales por localidad (Si desea puede especificar la localidad)"
 				+"\n5. Búsqueda personalizada"

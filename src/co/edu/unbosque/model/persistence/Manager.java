@@ -333,6 +333,54 @@ public class Manager {
 						}
 					}
 				}
+			//potentDangerous y species
+			}else if(!species.isEmpty() && sex.isEmpty() && size.isEmpty() && neighborhood.isEmpty()) {
+				for (int i = 0; i < petList.size(); i++) {
+					Pet pet = petList.get(i);
+					if(pet.getSpecies().equals(species) && pet.isPotentDangerous()==potentDangerous) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=petList.size();
+						}
+					}
+				}
+			//potentDangerous y sex
+			}else if(species.isEmpty() && !sex.isEmpty() && size.isEmpty() && neighborhood.isEmpty()) {
+				for (int i = 0; i < petList.size(); i++) {
+					Pet pet = petList.get(i);
+					if(pet.getSex().equals(sex) && pet.isPotentDangerous()==potentDangerous) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=petList.size();
+						}
+					}
+				}
+			//potentDangerous y size
+			}else if(species.isEmpty() && sex.isEmpty() && !size.isEmpty() && neighborhood.isEmpty()) {
+				for (int i = 0; i < petList.size(); i++) {
+					Pet pet = petList.get(i);
+					if(pet.getSize().equals(size) && pet.isPotentDangerous()==potentDangerous) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=petList.size();
+						}
+					}
+				}
+			//potentDangerous y neighborhood
+			}else if(species.isEmpty() && sex.isEmpty() && size.isEmpty() && !neighborhood.isEmpty()) {
+				for (int i = 0; i < petList.size(); i++) {
+					Pet pet = petList.get(i);
+					if(pet.getNeighborhood().equals(neighborhood) && pet.isPotentDangerous()==potentDangerous) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=petList.size();
+						}
+					}
+				}
 			//Todos los campos menos species
 			}else if(species.isEmpty() && !sex.isEmpty() && !size.isEmpty() && !neighborhood.isEmpty()){
 				for (int i = 0; i < petList.size(); i++) {
@@ -481,6 +529,54 @@ public class Manager {
 						}
 					}
 				}
+			//potentDangerous y species
+			}else if(!species.isEmpty() && sex.isEmpty() && size.isEmpty() && neighborhood.isEmpty()) {
+				for (int i = petList.size()-1; i > -1; i--) {
+					Pet pet = petList.get(i);
+					if(pet.getSpecies().equals(species) && pet.isPotentDangerous()==potentDangerous) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=-1;
+						}
+					}
+				}	
+			//potentDangerous y sex
+			}else if(species.isEmpty() && !sex.isEmpty() && size.isEmpty() && neighborhood.isEmpty()) {
+				for (int i = petList.size()-1; i > -1; i--) {
+					Pet pet = petList.get(i);
+					if(pet.getSex().equals(sex) && pet.isPotentDangerous()==potentDangerous) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=-1;
+						}
+					}
+				}
+			//potentDangerous y size
+			}else if(species.isEmpty() && sex.isEmpty() && !size.isEmpty() && neighborhood.isEmpty()) {
+				for (int i = petList.size()-1; i > -1; i--) {
+					Pet pet = petList.get(i);
+					if(pet.getSize().equals(size) && pet.isPotentDangerous()==potentDangerous) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=-1;
+						}
+					}
+				}
+			//potentDangerous y neighborhood
+			}else if(species.isEmpty() && sex.isEmpty() && size.isEmpty() && !neighborhood.isEmpty()) {
+				for (int i = petList.size()-1; i > -1; i--) {
+					Pet pet = petList.get(i);
+					if(pet.getNeighborhood().equals(neighborhood) && pet.isPotentDangerous()==potentDangerous) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=-1;
+						}
+					}
+				}
 			//Todos los campos menos species
 			}else if(species.isEmpty() && !sex.isEmpty() && !size.isEmpty() && !neighborhood.isEmpty()){
 				for (int i = petList.size()-1; i > -1; i--) {
@@ -603,6 +699,10 @@ public class Manager {
 				}
 			}
 		}
+		//Búsqueda sin coincidencias
+		if(contador==0) {
+			list="Búsqueda sin resultados\nRevise los parámetros de búsqueda e intente de nuevo";
+		}
 		return list;
 	}
 	/**
@@ -641,6 +741,54 @@ public class Manager {
 					contador++;
 					if(contador==n){
 						i=petList.size();
+					}
+				}
+			//Solo species
+			}else if(!species.isEmpty() && sex.isEmpty() && size.isEmpty() && neighborhood.isEmpty()) {
+				for (int i = 0; i < petList.size(); i++) {
+					Pet pet = petList.get(i);
+					if(pet.getSpecies().equals(species)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=petList.size();
+						}
+					}
+				}
+			//Solo sex
+			}else if(species.isEmpty() && !sex.isEmpty() && size.isEmpty() && neighborhood.isEmpty()) {
+				for (int i = 0; i < petList.size(); i++) {
+					Pet pet = petList.get(i);
+					if(pet.getSex().equals(sex)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=petList.size();
+						}
+					}
+				}
+			//Solo size
+			}else if(species.isEmpty() && sex.isEmpty() && !size.isEmpty() && neighborhood.isEmpty()) {
+				for (int i = 0; i < petList.size(); i++) {
+					Pet pet = petList.get(i);
+					if(pet.getSize().equals(size)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=petList.size();
+						}
+					}
+				}
+			//Solo neighborhood
+			}else if(species.isEmpty() && sex.isEmpty() && size.isEmpty() && !neighborhood.isEmpty()) {
+				for (int i = 0; i < petList.size(); i++) {
+					Pet pet = petList.get(i);
+					if(pet.getNeighborhood().equals(neighborhood)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=petList.size();
+						}
 					}
 				}
 			//Todos los campos menos species
@@ -788,6 +936,54 @@ public class Manager {
 						i=-1;
 					}
 				}
+			//Solo species
+			}else if(!species.isEmpty() && sex.isEmpty() && size.isEmpty() && neighborhood.isEmpty()) {
+				for (int i = petList.size()-1; i > -1; i--) {
+					Pet pet = petList.get(i);
+					if(pet.getSpecies().equals(species)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=-1;
+						}
+					}
+				}
+			//Solo sex
+			}else if(species.isEmpty() && !sex.isEmpty() && size.isEmpty() && neighborhood.isEmpty()) {
+				for (int i = petList.size()-1; i > -1; i--) {
+					Pet pet = petList.get(i);
+					if(pet.getSex().equals(sex)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=-1;
+						}
+					}
+				}
+			//Solo size
+			}else if(species.isEmpty() && sex.isEmpty() && !size.isEmpty() && neighborhood.isEmpty()) {
+				for (int i = petList.size()-1; i > -1; i--) {
+					Pet pet = petList.get(i);
+					if(pet.getSize().equals(size)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=-1;
+						}
+					}
+				}
+			//Solo neighborhood
+			}else if(species.isEmpty() && sex.isEmpty() && size.isEmpty() && !neighborhood.isEmpty()) {
+				for (int i = petList.size()-1; i > -1; i--) {
+					Pet pet = petList.get(i);
+					if(pet.getNeighborhood().equals(neighborhood)) {
+						list += (pet)+"\n";
+						contador++;
+						if(contador==n){
+							i=-1;
+						}
+					}
+				}
 			//Todos los campos menos Species
 			}else if(species.isEmpty() && !sex.isEmpty() && !size.isEmpty() && !neighborhood.isEmpty()) {
 				for (int i = petList.size()-1; i > -1; i--) {
@@ -909,6 +1105,10 @@ public class Manager {
 					}
 				}
 			}
+		}
+		//Búsqueda sin coincidencias
+		if(contador==0) {
+			list="Búsqueda sin resultados\nRevise los parámetros de búsqueda e intente de nuevo";
 		}
 		return list;
 	}
